@@ -1,8 +1,8 @@
 {
-  "name": "loopconf-testing",
+  "name": "integrated-testing",
   "version": "1.0.0",
-  "description": "LoopConf Presentation Slides",
-  "homepage": "http://ericmann.github.io/loopconf-testing",
+  "description": "A Better World Through Integrated Testing",
+  "homepage": "http://ericmann.github.io/integrated-testing",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
@@ -10,12 +10,12 @@
   },
   "author": {
     "name": "Eric Mann",
-    "email": "hakim.elhattab@gmail.com",
+    "email": "eric@eamann.com",
     "web": "https://eamann.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ericmann/loopconf-testing.git"
+    "url": "git://github.com/ericmann/integrated-testing.git"
   },
   "engines": {
     "node": "~0.12.0"
@@ -42,7 +42,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/ericmann/loopconf-testing/blob/master/LICENSE"
+      "url": "https://github.com/ericmann/integrated-testing/blob/master/LICENSE"
     }
   ]
 }
