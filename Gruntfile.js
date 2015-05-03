@@ -7,11 +7,11 @@ module.exports = function(grunt) {
 		meta: {
 			banner:
 				'/*!\n' +
-				' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
-				' * http://lab.hakim.se/reveal-js\n' +
+				' * LoopConf Presentation <%= pkg.version %> (<%= grunt.template.today("yyyy") %>)\n' +
+				' * http://ericmann.github.io/loopconf-testing\n' +
 				' * MIT licensed\n' +
 				' *\n' +
-				' * Copyright (C) 2015 Hakim El Hattab, http://hakim.se\n' +
+				' * Copyright (C) 2015 Eric Mann, https://eamann.com\n' +
 				' */'
 		},
 
