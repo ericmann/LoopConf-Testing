@@ -78,8 +78,93 @@
 				</section>
 
 				<!-- Logic Diagram -->
-				<section data-background="img/bg.png" data-background-size="800px">
-					<h2>Logic Diagrams</h2>
+				<section>
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2>Logic Diagrams</h2>
+					</section>
+
+					<section data-background="img/bg.png" data-background-size="800px">
+						<pre><code data-trim contenteditable>
+&lt;?php
+
+class Demo {
+
+  public $registered = false;
+
+  function register() {
+    add_action(
+      'admin_enqueue_scripts', array( $this, 'enqueue_if_post_for_cpt' )
+    );
+
+    $this->registered = true;
+  }
+
+  function enqueue_if_post_for_cpt() {
+    if ( $this->is_post_for_cpt() ) {
+      $this->enqueue_support_scripts();
+    }
+  }
+
+  function enqueue_support_scripts() {
+    wp_enqueue_script( /* ... */ );
+
+    wp_localize_script( /* ... */ );
+  }
+
+  function is_post_for_cpt() {
+    $post = get_post();
+
+    return is_admin() && ! empty( $post ) && $post->post_type === 'cpt';
+  }
+
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Logical Tree</h2>
+						<pre><code>
+                         Is Post for CPT?
+                          |             |
+                          |             |
+                         yes            no
+                          |             |
+                          |             |
+                       enqueued    not enqueued
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Simple trees == Simple tests</h2>
+						<p>For a given function, to gain <i>complete</i> code coverage, we have to walk down the entire logical tree.</p>
+					</section>
+
+					<section>
+						<h2>Test <code>is_post_for_cpt()</code></h2>
+						<pre><code>
+                     Is Admin Screen? -----
+                      |                    |
+                     yes                  no
+                      |                    |
+                      |                   false
+                     Have Post?-------
+                      |               |
+                     yes             no
+                      |               |
+                      |             false
+                     Correct CPT?
+                      |        |
+                     yes      no
+                      |        |
+                    true      false
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Complex trees == Complex tests</h2>
+						<p>Every tail in your diagram needs a test,<br />otherwise you can't be sure your code works.</p>
+						<p class="fragment">Simpler code makes this easier, and makes patching easier.</p>
+					</section>
 				</section>
 
 				<!-- WordPress Test Architecture -->
