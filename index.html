@@ -86,14 +86,51 @@
 				<section>
 					<section>
 						<h2>Basic PHPUnit Tests</h2>
+						<pre><code data-trim contenteditable>
+&lt;?php
+class SamplePHPUnitTest extends \PHPUnit_Framework_TestCase {
+
+  function setUp() {
+    parent::setUp();
+
+    /* global set up */
+  }
+
+  function test_function_does_something() {
+    /* set up anything else */
+    /* run test on code */
+    /* verify expectations */
+  }
+
+}
+						</code></pre>
 					</section>
 
 					<section>
 						<h2>WordPress Test Cases</h2>
+						<pre><code data-trim contenteditable>
+&lt;?php
+class SampleWordPressUnitTest extends \WP_UnitTestCase {
+
+  function setUp() {
+    parent::setUp();
+
+    /* global set up */
+  }
+
+  function test_function_does_something() {
+    /* set up anything else */
+    /* run test on code */
+    /* verify expectations */
+  }
+
+}
+						</code></pre>
 					</section>
 
 					<section>
 						<h2>WordPress Dev Layout</h2>
+						<img src="img/dev_layout.png">
 					</section>
 				</section>
 
@@ -117,18 +154,18 @@
 				<section>
 					<section>
 						<h2>What's next?</h2>
-					</section>
-					<section>
-						<h2>Plugins</h2>
-					</section>
-
-					<section>
-						<h2>Themes</h2>
+						<ul>
+							<li class="fragment">Plugins</li>
+							<li class="fragment">Themes</li>
+						</ul>
+						<aside class="notes">
+							The next logical step once we're writing tests with the WP testing framework is to add integration tests to our WordPress themes and plugins.
+						</aside>
 					</section>
 
 					<section>
 						<h2><a href="https://github.com/10up/wp_mock">WP_Mock</a></h2>
-						<p>Ultimately, custom (non-Core) code should be <i>unit</i>-tested independent of Core.</p>
+						<p>Ultimately, custom (non-Core) code should be <i>unit</i>-tested<br />independent of Core.</p>
 						<p class="fragment"><b>The Core test suite is for Core and <i>integration</i> testing.</b></p>
 					</section>
 				</section>
