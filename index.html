@@ -84,6 +84,7 @@
 					</section>
 
 					<section data-background="img/bg.png" data-background-size="800px">
+						<h2>CPT Management Example</h2>
 						<pre><code data-trim contenteditable>
 &lt;?php
 
@@ -121,25 +122,47 @@ class Demo {
 						</code></pre>
 					</section>
 
-					<section>
-						<h2>Logical Tree</h2>
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2>Test <code>enqueue_if_post_for_cpt()</code></h2>
 						<pre><code>
-                         Is Post for CPT?
-                          |             |
-                          |             |
-                         yes            no
-                          |             |
-                          |             |
-                       enqueued    not enqueued
+function enqueue_if_post_for_cpt() {
+  if ( $this->is_post_for_cpt() ) {
+    $this->enqueue_support_scripts();
+  }
+}
 						</code></pre>
 					</section>
 
-					<section>
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2>Test <code>enqueue_if_post_for_cpt()</code></h2>
+						<pre><code>
+                           Is Post for CPT?
+                            |             |
+                            |             |
+                            yes           no
+                            |             |
+                            |             |
+                            enqueued    not enqueued
+						</code></pre>
+					</section>
+
+					<section data-background="img/bg.png" data-background-size="800px">
 						<h2>Simple trees == Simple tests</h2>
 						<p>For a given function, to gain <i>complete</i> code coverage, we have to walk down the entire logical tree.</p>
 					</section>
 
-					<section>
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2>Test <code>is_post_for_cpt()</code></h2>
+						<pre><code>
+function is_post_for_cpt() {
+  $post = get_post();
+
+  return is_admin() && ! empty( $post ) && $post->post_type === 'cpt';
+}
+						</code></pre>
+					</section>
+
+					<section data-background="img/bg.png" data-background-size="800px">
 						<h2>Test <code>is_post_for_cpt()</code></h2>
 						<pre><code>
                      Is Admin Screen? -----
@@ -160,7 +183,7 @@ class Demo {
 						</code></pre>
 					</section>
 
-					<section>
+					<section data-background="img/bg.png" data-background-size="800px">
 						<h2>Complex trees == Complex tests</h2>
 						<p>Every tail in your diagram needs a test,<br />otherwise you can't be sure your code works.</p>
 						<p class="fragment">Simpler code makes this easier, and makes patching easier.</p>
@@ -223,6 +246,7 @@ class SampleWordPressUnitTest extends \WP_UnitTestCase {
 				<section>
 					<section data-background="img/bg.png" data-background-size="800px">
 						<h2>Start with Trac</h2>
+						<img src="img/trac.png" />
 					</section>
 
 					<section data-background="img/bg.png" data-background-size="800px">
@@ -232,7 +256,33 @@ class SampleWordPressUnitTest extends \WP_UnitTestCase {
 
 				<!-- Walkthrough -->
 				<section>
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2><a href="https://core.trac.wordpress.org/ticket/29069">Ticket #29069</a></h2>
+						<p>Adds some SMTP constants to <code>wp_config.php</code> that enable sending mail via SMTP instead of PHP's native <code>mail()</code> functionality.</p>
+						<p class="fragment"><em>More than likely plugin territory, but makes for a good example.</em></p>
+					</section>
 
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2><a href="https://core.trac.wordpress.org/ticket/29069">Ticket #29069</a></h2>
+						<img src="img/29609.png" />
+						<aside class="notes">
+							Make sure the tests for this change check if the constants are defined. If we can't hit our logical flow, we need to skip the test.
+						</aside>
+					</section>
+
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2><a href="https://core.trac.wordpress.org/ticket/27942">Ticket #27942</a></h2>
+						<p>If the blogname option contains escaped HTML, that HTML is unescaped on save, then stripped entirely on the next save. This is <b>bad</b>.</p>
+						<p class="fragment">"<code>&amp;lt;Test&amp;gt;</code>"<br />== save ==<br />"<code>&lt;Test&gt;</code>"<br />== save ==<br />"<code></code>"</p>
+					</section>
+
+					<section data-background="img/bg.png" data-background-size="800px">
+						<h2><a href="https://core.trac.wordpress.org/ticket/27942">Ticket #27942</a></h2>
+						<img src="img/27942.png" />
+						<aside class="notes">
+							One option is to literally just test <code>sanitize_option</code>. Let's start there. Since this is an <em>integration test</em>, though, we should also test setting the blogname and retrieving it as well.
+						</aside>
+					</section>
 				</section>
 
 				<!-- Future Applications -->
