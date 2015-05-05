@@ -1,6 +1,8 @@
 A Better World Through Integrated Testing
 -----------------------------------------
 
+Presentation => https://ericmann.github.io/integrated-testing
+
 Overview
 ========
 
@@ -11,7 +13,7 @@ Attendees will get a first-hand look at how WordPress’ built-in test suite is 
 Presentation History
 ====================
 
-* LoopConf 2015     Las Vegas, Nevada       6 May 2015
+ * LoopConf 2015   Las Vegas, Nevada   6 May 2015
 
 Credits
 =======
